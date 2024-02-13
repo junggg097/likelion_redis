@@ -1,5 +1,6 @@
 package com.example.redis.config;
 
+import com.example.redis.dto.ItemDto;
 import com.example.redis.dto.PersonDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,5 +29,14 @@ public class RedisConfig {
         return template;
     }
 
+    @Bean
+    public RedisTemplate<Long, ItemDto> cacheRedisTemplate(
+            RedisConnectionFactory connectionFactory
+    ) {
+        RedisTemplate<Long, ItemDto> template = new RedisTemplate<>();
+        template.setConnectionFactory(connectionFactory);
+        template.setDefaultSerializer(RedisSerializer.json());
+        return template;
+    }
 
 }
