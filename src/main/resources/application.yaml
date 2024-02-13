@@ -1,0 +1,7 @@
+spring:
+  data:
+    redis:
+      host: redis-13748.c322.us-east-1-2.ec2.cloud.redislabs.com
+      port: 13748
+      username: default
+      password: rNCluEfLoH6BC5rF4YpDb9PH3scmD0Ok
