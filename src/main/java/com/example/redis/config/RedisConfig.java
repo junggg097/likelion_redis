@@ -9,7 +9,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 @Configuration
-@EnableRedisHttpSession
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 10)
 public class RedisConfig {
     @Bean
     public RedisTemplate<String, PersonDto> personRedisTemplate (
@@ -27,4 +27,6 @@ public class RedisConfig {
         template.setValueSerializer(RedisSerializer.json());
         return template;
     }
+
+
 }
