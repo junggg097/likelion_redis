@@ -16,6 +16,13 @@ public class RedisConfig {
         RedisTemplate<String, PersonDto> template = new RedisTemplate<>();
         template.setConnectionFactory(connectionFactory);
         // 주어진 데이터의 직렬화 방식을 결정
-        template.setDefaultSerializer(RedisSerializer.json());
+        // Redis의 Value는 결국 문자열 형식이니까,
+        // 주어진 데이터(DTO)를 어떻게 문자열로 바꿀 것인지
+        //template.setDefaultSerializer(RedisSerializer.json());
+        // 미리 만들어진 String 변환기를 설정
+        template.setKeySerializer(RedisSerializer.string());
+        // 미리 만들어진 JSON 변환기를 설정
+        template.setValueSerializer(RedisSerializer.json());
+        return template;
     }
 }
