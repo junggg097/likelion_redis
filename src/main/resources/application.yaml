@@ -4,4 +4,4 @@ spring:
       host: redis-13748.c322.us-east-1-2.ec2.cloud.redislabs.com
       port: 13748
       username: default
-      password: <비밀번호>
+      password: rNCluEfLoH6BC5rF4YpDb9PH3scmD0Ok
