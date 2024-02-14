@@ -2,10 +2,7 @@ package com.example.redis;
 
 import com.example.redis.dto.ItemDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,13 @@ public class ItemController {
             Long id
     ) {
         return itemService.readOne(id);
+    }
+
+    @PostMapping
+    public ItemDto create(
+            @RequestBody
+            ItemDto itemDto
+    ){
+        return itemService.create(itemDto);
     }
 }
