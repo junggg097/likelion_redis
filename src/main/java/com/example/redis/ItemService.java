@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,6 +26,8 @@ public class ItemService {
 
     @Resource(name = "cacheRedisTemplate")
     private ValueOperations<Long, ItemDto> cacheOps;
+    @Resource(name = "rankTemplate")
+    private ZSetOperations<String, ItemDto> rankOps;
 
     @Cacheable(cacheNames = "itemAllCache", key = "#root.methodName")
     public List<ItemDto> readAll() {
@@ -95,6 +98,11 @@ public class ItemService {
                 .price(dto.getPrice())
                 .stock(dto.getStock())
                 .build()));
+    }
+
+
+    public void purchase(Long id) {
+        ItemDto item = ItemDto.fromEntity(repository.purchase(id));
     }
 
 }
